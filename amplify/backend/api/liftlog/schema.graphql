@@ -1,0 +1,20 @@
+type Set @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  excerciseID: ID! @index(name: "byExcercise")
+  weight: Float!
+  reps: Int!
+}
+
+type Excercise @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  workoutID: ID! @index(name: "byWorkout")
+  category: String!
+  Sets: [Set] @hasMany(indexName: "byExcercise", fields: ["id"])
+}
+
+type Workout @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  date: AWSDate!
+  Excercises: [Excercise] @hasMany(indexName: "byWorkout", fields: ["id"])
+}

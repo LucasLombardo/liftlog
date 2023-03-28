@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-liftlog-staging-213919-authRole",
+      "UnauthRoleArn": "arn:aws:iam::712759986923:role/amplify-liftlog-staging-213919-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::712759986923:role/amplify-liftlog-staging-213919-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-liftlog-staging-213919-deployment",
+      "UnauthRoleName": "amplify-liftlog-staging-213919-unauthRole",
+      "StackName": "amplify-liftlog-staging-213919",
+      "StackId": "arn:aws:cloudformation:us-east-1:712759986923:stack/amplify-liftlog-staging-213919/ff3adfa0-cdb0-11ed-bfa9-0a856acde05d",
+      "AmplifyAppId": "d22o1igwja828r"
+    }
+  }
+}
