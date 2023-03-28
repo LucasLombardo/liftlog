@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkoutsHeader component matches snapshot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#ddd",
+      "borderBottomWidth": 1,
+      "borderColor": "#444",
+      "borderStyle": "solid",
+      "flexDirection": "row",
+      "justifyContent": "space-evenly",
+    }
+  }
+>
+  <View
+    accessibilityLabel="workouts.previous_day"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "borderColor": "#444",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "marginVertical": 2,
+        "opacity": 1,
+        "paddingHorizontal": 10,
+        "paddingVertical": 6,
+      }
+    }
+  >
+    &lt;
+  </View>
+  <Text>
+    workouts.today
+  </Text>
+  <View
+    accessibilityLabel="workouts.next_day"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "borderColor": "#444",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "marginVertical": 2,
+        "opacity": 1,
+        "paddingHorizontal": 10,
+        "paddingVertical": 6,
+      }
+    }
+  >
+    &gt;
+  </View>
+</View>
+`;
