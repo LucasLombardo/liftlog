@@ -1,30 +1,34 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 
-export default function WorkoutsHeader() {
+export default function WorkoutsHeader({
+  onPrev,
+  onNext,
+  title,
+}: WorkoutsHeaderProps) {
   const { t } = useTranslation();
   return (
-    <View style={styles.header}>
+    <View style={s.header}>
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => null}
-        accessibilityLabel={"workouts.previous_day"}
+        style={s.button}
+        onPress={onPrev}
+        accessibilityLabel={t("workouts.previous_day")}
       >
-        {"<"}
+        <Text>{"<"}</Text>
       </TouchableOpacity>
-      <Text>{t("workouts.today")}</Text>
+      <Text style={s.title}>{title}</Text>
       <TouchableOpacity
-        style={styles.button}
-        accessibilityLabel="workouts.next_day"
-        onPress={() => null}
+        style={s.button}
+        accessibilityLabel={t("workouts.next_day")}
+        onPress={onNext}
       >
-        {">"}
+        <Text>{">"}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   header: {
     backgroundColor: "#ddd",
     alignItems: "center",
@@ -42,4 +46,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginVertical: 2,
   },
+  title: {
+    minWidth: 120,
+    textAlign: "center",
+  },
 });
+
+interface WorkoutsHeaderProps {
+  onPrev: () => void;
+  onNext: () => void;
+  title: string;
+}

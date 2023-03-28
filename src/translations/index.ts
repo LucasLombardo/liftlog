@@ -31,6 +31,12 @@ function getTranslationStrings(langStrings: LangStrings) {
   );
 }
 
+declare module "i18next" {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
 interface LangStrings {
   [key: string]: Translations;
 }

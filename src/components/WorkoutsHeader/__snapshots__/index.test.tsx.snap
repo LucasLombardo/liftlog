@@ -55,10 +55,19 @@ exports[`WorkoutsHeader component matches snapshot 1`] = `
       }
     }
   >
-    &lt;
+    <Text>
+      &lt;
+    </Text>
   </View>
-  <Text>
-    workouts.today
+  <Text
+    style={
+      {
+        "minWidth": 120,
+        "textAlign": "center",
+      }
+    }
+  >
+    test
   </Text>
   <View
     accessibilityLabel="workouts.next_day"
@@ -101,7 +110,9 @@ exports[`WorkoutsHeader component matches snapshot 1`] = `
       }
     }
   >
-    &gt;
+    <Text>
+      &gt;
+    </Text>
   </View>
 </View>
 `;
