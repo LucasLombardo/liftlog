@@ -3,27 +3,33 @@ import { TextInput } from "../inputs/TextInput";
 import { Formik } from "formik";
 
 export const SignInForm = ({ onSubmit, disabled }: SignInFormProps) => (
-  <Formik initialValues={{ email: "", password: "" }} onSubmit={onSubmit}>
-    {({ handleChange, handleBlur, handleSubmit, values }: any) => {
-      const props = { values, handleChange, handleBlur, editable: !disabled };
-      return (
-        <View style={[s.form, disabled ? s.formDisabled : null]}>
-          <Text style={s.title}>Sign in</Text>
-          <TextInput id="email" label="Email" {...props} />
-          <TextInput
-            id="password"
-            label="Password"
-            secureTextEntry
-            {...props}
-          />
-          <Button onPress={handleSubmit} title="Submit" />
-        </View>
-      );
-    }}
-  </Formik>
+  <View style={s.container}>
+    <Formik initialValues={{ email: "", password: "" }} onSubmit={onSubmit}>
+      {({ handleChange, handleBlur, handleSubmit, values }: any) => {
+        const props = { values, handleChange, handleBlur, editable: !disabled };
+        return (
+          <View style={[s.form, disabled ? s.formDisabled : null]}>
+            <Text style={s.title}>Sign in</Text>
+            <TextInput id="email" label="Email" {...props} />
+            <TextInput
+              id="password"
+              label="Password"
+              secureTextEntry
+              {...props}
+            />
+            <Button onPress={handleSubmit} title="Submit" />
+          </View>
+        );
+      }}
+    </Formik>
+  </View>
 );
 
 const s = StyleSheet.create({
+  container: {
+    display: "flex",
+    alignItems: "center",
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
@@ -31,7 +37,6 @@ const s = StyleSheet.create({
   },
   form: {
     marginTop: 16,
-    marginHorizontal: "auto",
     width: "70%",
     maxWidth: 420,
     minWidth: 240,

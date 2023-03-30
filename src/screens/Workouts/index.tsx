@@ -1,4 +1,4 @@
-import { StyleSheet, View, Button, Text } from "react-native";
+import { StyleSheet, View, Button, Text, Platform } from "react-native";
 import { useEffect, useState } from "react";
 import WorkoutsHeader from "../../components/WorkoutsHeader";
 import { useTranslation } from "react-i18next";
@@ -41,7 +41,7 @@ export default function Workouts({ navigation }: any) {
       console.log(res);
       setSession(res);
     } catch (e) {
-      // isFocused
+      //
     }
   };
 
@@ -73,12 +73,12 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? 50 : 0,
   },
   content: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    marginBottom: 40,
   },
 });

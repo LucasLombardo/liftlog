@@ -15,10 +15,18 @@ export const SimpleNav = ({ navigation }: SimpleNavProps) => {
 
   return (
     <View style={s.container}>
-      <Button title="Workouts" onPress={nav("Workouts")} />
-      <Button title="Sign In" onPress={nav("SignIn")} />
-      <Button title="Sign Out" onPress={handleSignOut} />
-      <Button title="Sign Up" onPress={nav("SignUp")} />
+      <View style={s.buttonWrapper}>
+        <Button title="Workouts" onPress={nav("Workouts")} />
+      </View>
+      <View style={s.buttonWrapper}>
+        <Button title="Sign In" onPress={nav("SignIn")} />
+      </View>
+      <View style={s.buttonWrapper}>
+        <Button title="Sign Out" onPress={handleSignOut} />
+      </View>
+      <View style={s.buttonWrapper}>
+        <Button title="Sign Up" onPress={nav("SignUp")} />
+      </View>
     </View>
   );
 };
@@ -28,9 +36,11 @@ const s = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     marginTop: "auto",
-    width: 340,
     marginHorizontal: "auto",
-    justifyContent: "space-between",
+    justifyContent: "center",
+  },
+  buttonWrapper: {
+    marginHorizontal: 4,
   },
 });
 

@@ -3,32 +3,38 @@ import { TextInput } from "../inputs/TextInput";
 import { Formik } from "formik";
 
 export const SignUpForm = ({ onSubmit, disabled }: SignUpFormProps) => (
-  <Formik
-    initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
-    onSubmit={onSubmit}
-  >
-    {({ handleChange, handleBlur, handleSubmit, values }: any) => {
-      const props = { values, handleChange, handleBlur, editable: !disabled };
-      return (
-        <View style={[s.form, disabled ? s.formDisabled : null]}>
-          <Text style={s.title}>Sign up</Text>
-          <TextInput id="firstName" label="First Name" {...props} />
-          <TextInput id="lastName" label="Last Name" {...props} />
-          <TextInput id="email" label="Email" {...props} />
-          <TextInput
-            id="password"
-            label="Password"
-            secureTextEntry
-            {...props}
-          />
-          <Button onPress={handleSubmit} title="Submit" />
-        </View>
-      );
-    }}
-  </Formik>
+  <View style={s.container}>
+    <Formik
+      initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
+      onSubmit={onSubmit}
+    >
+      {({ handleChange, handleBlur, handleSubmit, values }: any) => {
+        const props = { values, handleChange, handleBlur, editable: !disabled };
+        return (
+          <View style={[s.form, disabled ? s.formDisabled : null]}>
+            <Text style={s.title}>Sign up</Text>
+            <TextInput id="firstName" label="First Name" {...props} />
+            <TextInput id="lastName" label="Last Name" {...props} />
+            <TextInput id="email" label="Email" {...props} />
+            <TextInput
+              id="password"
+              label="Password"
+              secureTextEntry
+              {...props}
+            />
+            <Button onPress={handleSubmit} title="Submit" />
+          </View>
+        );
+      }}
+    </Formik>
+  </View>
 );
 
 const s = StyleSheet.create({
+  container: {
+    display: "flex",
+    alignItems: "center",
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
@@ -36,7 +42,6 @@ const s = StyleSheet.create({
   },
   form: {
     marginTop: 16,
-    marginHorizontal: "auto",
     width: "70%",
     maxWidth: 420,
     minWidth: 240,

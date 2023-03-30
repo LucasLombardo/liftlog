@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Platform } from "react-native";
 import { SignInForm, SignInFormData } from "../../components/forms/SignInForm";
 import { Auth } from "aws-amplify";
 import { SimpleNav } from "../../components/SimpleNav";
@@ -36,6 +36,7 @@ export default function SignUp({ navigation }: any) {
 
 const s = StyleSheet.create({
   container: {
+    paddingTop: Platform.OS === "android" ? 50 : 0,
     flex: 1,
     backgroundColor: "#fff",
   },
