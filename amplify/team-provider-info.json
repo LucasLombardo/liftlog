@@ -10,6 +10,11 @@
       "StackName": "amplify-liftlog-staging-213919",
       "StackId": "arn:aws:cloudformation:us-east-1:712759986923:stack/amplify-liftlog-staging-213919/ff3adfa0-cdb0-11ed-bfa9-0a856acde05d",
       "AmplifyAppId": "d22o1igwja828r"
+    },
+    "categories": {
+      "auth": {
+        "liftlog": {}
+      }
     }
   }
 }

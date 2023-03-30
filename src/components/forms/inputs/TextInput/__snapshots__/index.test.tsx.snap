@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput component matches snapshot 1`] = `
+<View>
+  <Text
+    style={
+      {
+        "fontSize": 16,
+      }
+    }
+  >
+    test input
+  </Text>
+  <TextInput
+    accessibilityLabel="test input"
+    onBlur={[Function]}
+    onChangeText={[Function]}
+    style={
+      {
+        "borderColor": "black",
+        "borderWidth": 1,
+        "marginBottom": 10,
+        "padding": 4,
+      }
+    }
+    value=""
+  />
+</View>
+`;

@@ -1,15 +1,20 @@
-import { StyleSheet, View, Button } from "react-native";
-import { useState } from "react";
+import { StyleSheet, View, Button, Text } from "react-native";
+import { useEffect, useState } from "react";
 import WorkoutsHeader from "../../components/WorkoutsHeader";
 import { useTranslation } from "react-i18next";
 import { formatDate } from "../../helpers";
 import { DataStore } from "@aws-amplify/datastore";
 import { Workout } from "../../models";
+import { SimpleNav } from "../../components/SimpleNav";
+import { Auth } from "aws-amplify";
+import { useIsFocused } from "@react-navigation/native";
 
-export default function Workouts() {
+export default function Workouts({ navigation }: any) {
+  const isFocused = useIsFocused();
   const today = new Date();
   const [date, setDate] = useState(today);
   const { t, i18n } = useTranslation();
+  const [session, setSession] = useState(null);
 
   const changeDateBy = (n: number) => () => {
     const newDate = new Date(date);
@@ -30,6 +35,21 @@ export default function Workouts() {
     );
   };
 
+  const getUserSession = async () => {
+    try {
+      const res = await Auth.currentUserInfo();
+      console.log(res);
+      setSession(res);
+    } catch (e) {
+      // isFocused
+    }
+  };
+
+  useEffect(() => {
+    if (!isFocused) return;
+    getUserSession();
+  }, [isFocused]);
+
   return (
     <View style={s.container}>
       <WorkoutsHeader
@@ -37,7 +57,14 @@ export default function Workouts() {
         onPrev={changeDateBy(-1)}
         onNext={changeDateBy(1)}
       />
-      <Button title="New Workout" onPress={handleCreate} />
+      <View style={s.content}>
+        {session ? (
+          <Button title="New Workout" onPress={handleCreate} />
+        ) : (
+          <Text>Sign In To Add Workouts</Text>
+        )}
+      </View>
+      <SimpleNav {...{ navigation }} />
     </View>
   );
 }
@@ -46,5 +73,12 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    marginBottom: 40,
   },
 });
