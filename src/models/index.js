@@ -2,6 +2,6 @@
 import { initSchema } from "@aws-amplify/datastore";
 import { schema } from "./schema";
 
-const { Set, Excercise, Workout } = initSchema(schema);
+const { Category, Excercise, Set, SetGroup, Workout } = initSchema(schema);
 
-export { Set, Excercise, Workout };
+export { Category, Excercise, Set, SetGroup, Workout };

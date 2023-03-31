@@ -1,18 +1,32 @@
 {
   "api": {
     "liftlog": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "liftlog"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authliftlog"
+              }
             }
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
               "apiKeyExpirationDays": 30,
-              "description": "This is an api key"
+              "description": "api key description"
             },
             "authenticationType": "API_KEY"
           }

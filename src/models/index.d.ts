@@ -11,41 +11,39 @@ import {
   AsyncCollection,
 } from "@aws-amplify/datastore";
 
-type EagerSet = {
+type EagerCategory = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Set, "id">;
+    identifier: ManagedIdentifier<Category, "id">;
     readOnlyFields: "createdAt" | "updatedAt";
   };
   readonly id: string;
+  readonly name?: string | null;
   readonly excerciseID: string;
-  readonly weight: number;
-  readonly reps: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
 
-type LazySet = {
+type LazyCategory = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Set, "id">;
+    identifier: ManagedIdentifier<Category, "id">;
     readOnlyFields: "createdAt" | "updatedAt";
   };
   readonly id: string;
+  readonly name?: string | null;
   readonly excerciseID: string;
-  readonly weight: number;
-  readonly reps: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
 
-export declare type Set = LazyLoading extends LazyLoadingDisabled
-  ? EagerSet
-  : LazySet;
+export declare type Category = LazyLoading extends LazyLoadingDisabled
+  ? EagerCategory
+  : LazyCategory;
 
-export declare const Set: (new (init: ModelInit<Set>) => Set) & {
+export declare const Category: (new (init: ModelInit<Category>) => Category) & {
   copyOf(
-    source: Set,
-    mutator: (draft: MutableModel<Set>) => MutableModel<Set> | void
-  ): Set;
+    source: Category,
+    mutator: (draft: MutableModel<Category>) => MutableModel<Category> | void
+  ): Category;
 };
 
 type EagerExcercise = {
@@ -54,10 +52,11 @@ type EagerExcercise = {
     readOnlyFields: "createdAt" | "updatedAt";
   };
   readonly id: string;
-  readonly name: string;
-  readonly workoutID: string;
-  readonly category: string;
-  readonly Sets?: (Set | null)[] | null;
+  readonly name?: string | null;
+  readonly excerciseType?: string | null;
+  readonly notes?: string | null;
+  readonly SetGroups?: (SetGroup | null)[] | null;
+  readonly Categories?: (SetGroup | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -68,10 +67,11 @@ type LazyExcercise = {
     readOnlyFields: "createdAt" | "updatedAt";
   };
   readonly id: string;
-  readonly name: string;
-  readonly workoutID: string;
-  readonly category: string;
-  readonly Sets: AsyncCollection<Set>;
+  readonly name?: string | null;
+  readonly excerciseType?: string | null;
+  readonly notes?: string | null;
+  readonly SetGroups: AsyncCollection<SetGroup>;
+  readonly Categories: AsyncCollection<SetGroup>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -89,6 +89,90 @@ export declare const Excercise: (new (
   ): Excercise;
 };
 
+type EagerSet = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Set, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly seconds?: number | null;
+  readonly distance?: number | null;
+  readonly distanceUnits?: string | null;
+  readonly weight?: number | null;
+  readonly weightUnits?: string | null;
+  readonly reps?: number | null;
+  readonly setgroupID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+type LazySet = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Set, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly seconds?: number | null;
+  readonly distance?: number | null;
+  readonly distanceUnits?: string | null;
+  readonly weight?: number | null;
+  readonly weightUnits?: string | null;
+  readonly reps?: number | null;
+  readonly setgroupID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+export declare type Set = LazyLoading extends LazyLoadingDisabled
+  ? EagerSet
+  : LazySet;
+
+export declare const Set: (new (init: ModelInit<Set>) => Set) & {
+  copyOf(
+    source: Set,
+    mutator: (draft: MutableModel<Set>) => MutableModel<Set> | void
+  ): Set;
+};
+
+type EagerSetGroup = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<SetGroup, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly notes?: string | null;
+  readonly workoutID: string;
+  readonly Sets?: (Set | null)[] | null;
+  readonly excerciseID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+type LazySetGroup = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<SetGroup, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly notes?: string | null;
+  readonly workoutID: string;
+  readonly Sets: AsyncCollection<Set>;
+  readonly excerciseID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+export declare type SetGroup = LazyLoading extends LazyLoadingDisabled
+  ? EagerSetGroup
+  : LazySetGroup;
+
+export declare const SetGroup: (new (init: ModelInit<SetGroup>) => SetGroup) & {
+  copyOf(
+    source: SetGroup,
+    mutator: (draft: MutableModel<SetGroup>) => MutableModel<SetGroup> | void
+  ): SetGroup;
+};
+
 type EagerWorkout = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Workout, "id">;
@@ -96,7 +180,8 @@ type EagerWorkout = {
   };
   readonly id: string;
   readonly date: string;
-  readonly Excercises?: (Excercise | null)[] | null;
+  readonly notes?: string | null;
+  readonly SetGroups?: (SetGroup | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -108,7 +193,8 @@ type LazyWorkout = {
   };
   readonly id: string;
   readonly date: string;
-  readonly Excercises: AsyncCollection<Excercise>;
+  readonly notes?: string | null;
+  readonly SetGroups: AsyncCollection<SetGroup>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
