@@ -1,16 +1,18 @@
-type Category @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Workout @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  name: String
-  excerciseID: ID! @index(name: "byExcercise")
+  date: AWSDate
+  notes: String
+  timeStarted: Int
+  timeEnded: Int
+  setGroups: [SetGroup] @hasMany(indexName: "byWorkout", fields: ["id"])
 }
 
-type Excercise @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type SetGroup @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  name: String
-  excerciseType: String
   notes: String
-  SetGroups: [SetGroup] @hasMany(indexName: "byExcercise", fields: ["id"])
-  Categories: [SetGroup] @hasMany(indexName: "byExcercise", fields: ["id"])
+  sets: [Set] @hasMany(indexName: "bySetGroup", fields: ["id"])
+  workoutID: ID! @index(name: "byWorkout")
+  excerciseID: ID! @index(name: "byExcercise")
 }
 
 type Set @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -19,23 +21,20 @@ type Set @model @auth(rules: [{allow: public}, {allow: owner}]) {
   distance: Float
   distanceUnits: String
   weight: Float
-  weightUnits: String
+  weightUnits: Float
   reps: Int
   setgroupID: ID! @index(name: "bySetGroup")
 }
 
-type SetGroup @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Excercise @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
+  name: String!
+  excerciseType: String!
   notes: String
-  workoutID: ID! @index(name: "byWorkout")
-  Sets: [Set] @hasMany(indexName: "bySetGroup", fields: ["id"])
-  excerciseID: ID! @index(name: "byExcercise")
+  setGroups: [SetGroup] @hasMany(indexName: "byExcercise", fields: ["id"])
 }
 
-type Workout @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Category @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  date: AWSDate!
-  notes: String
-  SetGroups: [SetGroup] @hasMany(indexName: "byWorkout", fields: ["id"])
+  name: String!
 }
- 
