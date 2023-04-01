@@ -354,6 +354,20 @@ export const schema = {
             associatedWith: ["excerciseID"],
           },
         },
+        categories: {
+          name: "categories",
+          isArray: true,
+          type: {
+            model: "ExcerciseCategory",
+          },
+          isRequired: false,
+          attributes: [],
+          isArrayNullable: true,
+          association: {
+            connectionType: "HAS_MANY",
+            associatedWith: ["excercise"],
+          },
+        },
         createdAt: {
           name: "createdAt",
           isArray: false,
@@ -415,6 +429,20 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
+        excercises: {
+          name: "excercises",
+          isArray: true,
+          type: {
+            model: "ExcerciseCategory",
+          },
+          isRequired: false,
+          attributes: [],
+          isArrayNullable: true,
+          association: {
+            connectionType: "HAS_MANY",
+            associatedWith: ["category"],
+          },
+        },
         createdAt: {
           name: "createdAt",
           isArray: false,
@@ -459,9 +487,99 @@ export const schema = {
         },
       ],
     },
+    ExcerciseCategory: {
+      name: "ExcerciseCategory",
+      fields: {
+        id: {
+          name: "id",
+          isArray: false,
+          type: "ID",
+          isRequired: true,
+          attributes: [],
+        },
+        excerciseId: {
+          name: "excerciseId",
+          isArray: false,
+          type: "ID",
+          isRequired: false,
+          attributes: [],
+        },
+        categoryId: {
+          name: "categoryId",
+          isArray: false,
+          type: "ID",
+          isRequired: false,
+          attributes: [],
+        },
+        excercise: {
+          name: "excercise",
+          isArray: false,
+          type: {
+            model: "Excercise",
+          },
+          isRequired: true,
+          attributes: [],
+          association: {
+            connectionType: "BELONGS_TO",
+            targetNames: ["excerciseId"],
+          },
+        },
+        category: {
+          name: "category",
+          isArray: false,
+          type: {
+            model: "Category",
+          },
+          isRequired: true,
+          attributes: [],
+          association: {
+            connectionType: "BELONGS_TO",
+            targetNames: ["categoryId"],
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          isArray: false,
+          type: "AWSDateTime",
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+        updatedAt: {
+          name: "updatedAt",
+          isArray: false,
+          type: "AWSDateTime",
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+      },
+      syncable: true,
+      pluralName: "ExcerciseCategories",
+      attributes: [
+        {
+          type: "model",
+          properties: {},
+        },
+        {
+          type: "key",
+          properties: {
+            name: "byExcercise",
+            fields: ["excerciseId"],
+          },
+        },
+        {
+          type: "key",
+          properties: {
+            name: "byCategory",
+            fields: ["categoryId"],
+          },
+        },
+      ],
+    },
   },
   enums: {},
   nonModels: {},
   codegenVersion: "3.4.0",
-  version: "37c7f278a8386fea4acc29d430ccdf57",
+  version: "06c7aebf2776e81d37d579b72a7fc5e0",
 };

@@ -9,6 +9,7 @@ import {
   LazyLoading,
   LazyLoadingDisabled,
   AsyncCollection,
+  AsyncItem,
 } from "@aws-amplify/datastore";
 
 type EagerWorkout = {
@@ -146,6 +147,7 @@ type EagerExcercise = {
   readonly excerciseType: string;
   readonly notes?: string | null;
   readonly setGroups?: (SetGroup | null)[] | null;
+  readonly categories?: (ExcerciseCategory | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -160,6 +162,7 @@ type LazyExcercise = {
   readonly excerciseType: string;
   readonly notes?: string | null;
   readonly setGroups: AsyncCollection<SetGroup>;
+  readonly categories: AsyncCollection<ExcerciseCategory>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -184,6 +187,7 @@ type EagerCategory = {
   };
   readonly id: string;
   readonly name: string;
+  readonly excercises?: (ExcerciseCategory | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -195,6 +199,7 @@ type LazyCategory = {
   };
   readonly id: string;
   readonly name: string;
+  readonly excercises: AsyncCollection<ExcerciseCategory>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -208,4 +213,47 @@ export declare const Category: (new (init: ModelInit<Category>) => Category) & {
     source: Category,
     mutator: (draft: MutableModel<Category>) => MutableModel<Category> | void
   ): Category;
+};
+
+type EagerExcerciseCategory = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ExcerciseCategory, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly excerciseId?: string | null;
+  readonly categoryId?: string | null;
+  readonly excercise: Excercise;
+  readonly category: Category;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+type LazyExcerciseCategory = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ExcerciseCategory, "id">;
+    readOnlyFields: "createdAt" | "updatedAt";
+  };
+  readonly id: string;
+  readonly excerciseId?: string | null;
+  readonly categoryId?: string | null;
+  readonly excercise: AsyncItem<Excercise>;
+  readonly category: AsyncItem<Category>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+};
+
+export declare type ExcerciseCategory = LazyLoading extends LazyLoadingDisabled
+  ? EagerExcerciseCategory
+  : LazyExcerciseCategory;
+
+export declare const ExcerciseCategory: (new (
+  init: ModelInit<ExcerciseCategory>
+) => ExcerciseCategory) & {
+  copyOf(
+    source: ExcerciseCategory,
+    mutator: (
+      draft: MutableModel<ExcerciseCategory>
+    ) => MutableModel<ExcerciseCategory> | void
+  ): ExcerciseCategory;
 };

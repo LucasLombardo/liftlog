@@ -50,7 +50,7 @@ const getFetchParams = (query) => [
         const { catagoryName } = seedData.excercises.find(
           (iex) => iex.name === ex.name
         );
-        return `ec${i}: createExcerciseCategory(input: { categoryId: "${categories.data[catagoryName]}", excerciseId: "${ex.id}" }) { id }\n`;
+        return `ec${i}: createExcerciseCategory(input: { categoryId: "${categories.data[catagoryName].id}", excerciseId: "${ex.id}" }) { id }\n`;
       })}
     }  
   `)
